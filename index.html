@@ -11,19 +11,11 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script type="text/javascript" src="assets/javascript/game.js"></script>
-
+    
 </head>
 
 <body>
 
-
-    <!-- <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary navbar-transparent">
-        <div class="container">
-            <a class="navbar-brand" href="./index.html">
-                <img src="./assets/images/icon.png" width="30" height="30" class="d-inline-block align-center" alt="Avengers">Earth's Mightiest Heroes!
-
-        </div>
-    </div> -->
     <header class="navbar navbar-expand-lg navbar-dark bg-danger mb-4">
         <div class="container">
             <a class="navbar-brand" href="./index.html">
@@ -35,19 +27,31 @@
 
     <section class="container">
         <div class="jumbotron">
-            <div class="container justify-content-center">
-                <h1 class="display-6">Press Any Key to Get Started!</h1>
-                <p class="lead">
-                    <h3>Wins:
-                        <span id="wins"></span>
-                    </h3>
-                    <h3>Numbers of Guesses Remaining:
-                        <span id="userGuess"></span>
-                    </h3>
-                    <h3>Letters Already Guessed:
-                        <span id="choose"></span>
-                    </h3>
-                </p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <h1 id="startDiv" class="display-6">Press Any Key to Get Started!</h1>
+                        <p class="lead">
+                            <h4>Wins:
+                                <span id="wins"></span>
+                            </h4>
+                            <h4>Numbers of Guesses Remaining:
+                                <span id="userGuess"></span>
+                            </h4>
+                            <h4>Letters Already Guessed:
+                                <span id="choose"></span>
+                            </h4>
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="img-thumbnail" src="" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Example</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
