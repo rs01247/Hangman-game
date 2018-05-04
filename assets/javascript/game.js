@@ -1,37 +1,53 @@
-// INITIALIZATION
-var wins = 0;
-var userGuess = 0;
-var choose = "";
 
-// HTML ELEMENT NODES
-var winSpan = document.getElementById("wins");
-var userSpan = document.getElementById("userGuess");
-var chooseSpan = document.getElementById("choose");
+document.onload = function () {
 
-// WORD CHOICES FOR THE GAME
-var avengers = [
-    "thanos", 
-    "hulk", 
-    "thor", 
-    "hawkeye", 
-    "loki"];
+    // INITIALIZATION
 
-// PICKS A RANDOM WORD    
-var selection = avengers[Math.floor(Math.random() * avengers.length)];
+    var wins = 0;
+    var userGuess = 0;
+    var answers = [];
 
-// CREATES THE BLANKS FOR WORD GUESS ACCORDING TO LENGTH OF WORD
-var answers = [];
-for (var i = 0; i < selection.length; i++) {
-    answers[i] = "_";
+    // HTML ELEMENT NODES
+    var winSpan = document.getElementById("wins");
+    var userSpan = document.getElementById("userGuess");
+    var answerSpan = document.getElementById("answers");
+
+    // WORD CHOICES FOR THE GAME
+    var avengers = [
+        "thanos",
+        "hulk",
+        "thor",
+        "hawkeye",
+        "loki"
+    ];
+
+    // var targetDiv = document.getElementById("startDiv");
+    // targetDiv.innerHTML = avengers;
+
+    // GAME LOOP
+    document.onkeydown = function (event) {
+        var keyPress = event.key.toLowerCase();
+        var userChoice = event.key;
+        var selection = avengers[Math.floor(Math.random() * avengers.length)];
+
+        var answers = [];
+        for (var i = 0; i < selection.length; i++) {
+            answers[i] = "_";
+        }
+
+        var remaining = selection.length;
+
+        while (remaining > 0) {
+
+            targetDiv.innerHTML = answers.join(" ");
+
+            if (userChoice === selection) {
+
+            }
+        }
+
+        answerSpan.textContent = answers;
+
+    }
+
 }
-
-var remaining = selection.length;
-
-// WHILE LOOP THAT CONTINUES UNTIL THERE ARE NO MORE REMAINING LETTERS
-
-while (remaining > 0) {
-    var targetDiv = document.getElementById("startDiv");
-    targetDiv.textContent = "Hello";
-}
-
-answers.join(" ");
