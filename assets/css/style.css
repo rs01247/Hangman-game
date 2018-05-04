@@ -1,3 +1,8 @@
 body {
-    background: url("../images/nasty_fabric.png");
+    background: url("../images/backgroundavengers.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: cover;
+    background-attachment: fixed;
+
 }

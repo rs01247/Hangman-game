@@ -1,16 +1,16 @@
 
-document.onload = function () {
+window.onload = function () {
 
-    // INITIALIZATION
+    // INITIALIZATION   
 
     var wins = 0;
-    var userGuess = 0;
-    var answers = [];
+    var userGuess = remaining;
+    var letters = [];
 
     // HTML ELEMENT NODES
     var winSpan = document.getElementById("wins");
     var userSpan = document.getElementById("userGuess");
-    var answerSpan = document.getElementById("answers");
+    var letterSpan = document.getElementById("letters");
 
     // WORD CHOICES FOR THE GAME
     var avengers = [
@@ -21,33 +21,36 @@ document.onload = function () {
         "loki"
     ];
 
-    // var targetDiv = document.getElementById("startDiv");
-    // targetDiv.innerHTML = avengers;
+    var selection = avengers[Math.floor(Math.random() * avengers.length)];
+    var answers = [];
+    for (var i = 0; i < selection.length; i++) {
+        answers[i] = "_";
+    }
 
-    // GAME LOOP
+    var remaining = selection.length;
+
+    // GAME LOOP    
+    // while (remaining > 0) {
+
     document.onkeydown = function (event) {
-        var keyPress = event.key.toLowerCase();
-        var userChoice = event.key;
-        var selection = avengers[Math.floor(Math.random() * avengers.length)];
+        var targetDiv = document.getElementById("startDiv");
+        targetDiv.innerHTML = answers.join(" ");
+        console.log(answers.join(" "));
 
-        var answers = [];
-        for (var i = 0; i < selection.length; i++) {
-            answers[i] = "_";
-        }
+// CURRENT BUG - CORRECT LETTER SHOWS UP IN THE BLANKS WHEN THE SECOND LETTER IS PRESSED
 
-        var remaining = selection.length;
-
-        while (remaining > 0) {
-
-            targetDiv.innerHTML = answers.join(" ");
-
-            if (userChoice === selection) {
-
+        var input = event.key;
+        for (var j = 0; j < selection.length; j++) {
+            if (selection[j] === input) {
+            answers[j] = input;
+            remaining--;
             }
         }
-
-        answerSpan.textContent = answers;
-
     }
+// }
+
+    winSpan.textContent = wins;
+    userSpan.textContent = userGuess;
+    letterSpan.textContent = letters;
 
 }
