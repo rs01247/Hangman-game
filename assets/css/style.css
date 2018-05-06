@@ -1,7 +1,7 @@
 body {
     background: url("../images/backgroundavengers.jpg");
     background-repeat: no-repeat;
-    background-position: 50% 20%;
+    background-position: 50% 0%;
     background-size: cover;
     background-attachment: fixed;
 
@@ -9,4 +9,9 @@ body {
 
 #startDiv {
     font-size: 5vh;
+}
+
+#headShot {
+    width: 30vh;
+    height: 30vh;
 }
