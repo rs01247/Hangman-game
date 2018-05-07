@@ -32,36 +32,39 @@ window.onload = function () {
     var selection = avengers[Math.floor(Math.random() * avengers.length)];
     console.log(selection);
 
-    // HTML ELEMENT NODES
+    // DECLARING VARIABLES
     var winSpan = document.getElementById("wins");
     var userSpan = document.getElementById("userGuess");
     var letterSpan = document.getElementById("letters");
-    var targetDiv = document.getElementById("startDiv");
+    var startDiv = document.getElementById("startDiv");
     var character = document.getElementById("hero");
     var charcterPic = document.getElementById("headShot");
+    var restartGame = document.getElementById("restartButton");
+    var validGuess = (event.keyCode < 91 && event.keyCode > 64);
 
     // ANSWERS ARRAY THAT IS DISPLAYED
     var answers = [];
     for (var i = 0; i < selection.length; i++) {
         answers[i] = "_";
     }
-    var remaining = selection.length;   
+    var remaining = selection.length;
     console.log(remaining)
 
 
     // CREATING FUNCTIONS FOR RESTARTING THE GAME AND UPDATING INFORMATION
     function restartGame() {
         selection = avengers[Math.floor(Math.random() * avengers.length)];
-        // var targetDiv = document.getElementById("startDiv");
-        // targetDiv.innerHTML = (answers.join(" ")).toUpperCase();
+        startDiv.innerHTML = (answers.join(" ")).toUpperCase();
         userGuess = 15;
         letters = [];
+        character.innerHTML = "GUESS THE HERO!";
+        characerPic.src = "./assets/images/thumbnail.png"
         updateHTML();
     }
 
     function superImage() {
         charcterPic.src = images[selection];
-        character.style.fontSize = "6vh";  
+        character.style.fontSize = "6vh";
         character.innerHTML = "AVENGERS ASSEMBLE";
     }
 
@@ -76,62 +79,66 @@ window.onload = function () {
         character.innerHTML = "YOU HAVE BEEN DISINTEGRATED"
 
     }
+
     // GAME LOOP    
 
-    //JS TO MAKE GAME START WITH BUTTON PRESS
-    // startDiv = document.getElementById("startDiv");
-    // startDiv.onclick = function () {}
+    // START GAME FROM BUTTON CLICK
+    startDiv.onclick = function (event) {
+        startDiv.innerHTML = (answers.join(" ")).toUpperCase();
 
-    document.onkeyup = function (event) {
-        var input = event.key;
-        // if (event.keyCode === 13) {
-            for (var j = 0; j < selection.length; j++) {
-                if (selection[j] === input) {
-                    answers[j] = input;
-                    remaining--;
-                    // And stop logging [j] input
-                    console.log(remaining); 
-                }
+        document.onkeyup = function (event) {
+            var input = event.key;
 
-                // if ()
-
-                // NEED TO LOG LETTERS USED
-                targetDiv.innerHTML = (answers.join(" ")).toUpperCase();
-
-                // IF STATEMENT THAT RESTARTS GAME WHEN COMPLETED
-                //LOG WIN TO "wins"
-            }
-
-            // document.onkeyup = function (event) {
-            //     var input = event.key;  
+            // MAKE SURE KEYS PRESSED ARE ONLY A-Z
             if (event.keyCode < 91 && event.keyCode > 64) {
-                // if {
+                if (letters.indexOf(input.toUpperCase()) === -1) {
                     userGuess--;
-                    letters.push(input); 
-                // }
+                    letters.push(input.toUpperCase());
+
+                    for (var j = 0; j < selection.length; j++) {
+                        if (selection[j] === input) {
+                            answers[j] = input;
+                            remaining--;
+                            // And stop logging [j] input
+                            console.log(remaining);
+                        }
+
+                        startDiv.innerHTML = (answers.join(" ")).toUpperCase();
+
+                        if (remaining === 0) {
+                            wins++;
+                            superImage();
+                            // Display Button to Restart Game
+                            restartGame.id = "restartButtonChange";
+                            // if (button on click) {
+                            // restartGame()
+                            // }
+                        }
+            
+                        else if (userGuess === 0) {
+                            youLose();
+                            // Display Button to Restart Game
+            
+                            // if (button on click) {
+                            // restartGame()
+                            // }
+                        }
+            
+                        else {
+                            updateHTML();
+                        }
+                    }
+                }   
+
 
             }
 
 
-            if (remaining === 0) {
-                wins++;
-                superImage();
-                // Button to restart game initiates restartGame()
-                restartGame();
-            }
 
-            else if (userGuess === 0) {
-                youLose();
-                restartGame();
-            }
 
-            else {
-                updateHTML();
-            }
-        // }
+        }
     }
     //DISABLE KEYUP AT END GAME
-
     // userGuess--;
     // letters.push(input);
 
@@ -141,5 +148,3 @@ window.onload = function () {
     //     alert("PLEASE USE ALPHABET ONLY")
     // }
 }
-
-

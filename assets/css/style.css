@@ -15,3 +15,11 @@ body {
     width: 30vh;
     height: 30vh;
 }
+
+#restartButton {
+    display: none;
+}
+
+#restartButtonChange {
+    display: block;
+}
