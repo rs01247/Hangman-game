@@ -137,9 +137,6 @@ window.onload = function () {
 
         }
 
-
-
-
     }
 
 }
