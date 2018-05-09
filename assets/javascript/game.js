@@ -36,14 +36,15 @@ window.onload = function () {
     var letterSpan = document.getElementById("letters");
     var startDiv = document.getElementById("startDiv");
     var character = document.getElementById("hero");
-    var charcterPic = document.getElementById("headShot");
-    var restartGame = document.getElementById("restartButton");
+    var characterPic = document.getElementById("headShot");
+    var startOver = document.getElementById("restartButton");
 
     // ANSWERS ARRAY THAT IS DISPLAYED
     var answers = [];
     for (var i = 0; i < selection.length; i++) {
         answers[i] = "_";
     }
+
     var remaining = selection.length;
     console.log(remaining)
 
@@ -52,16 +53,16 @@ window.onload = function () {
     function restartGame() {
         selection = avengers[Math.floor(Math.random() * avengers.length)];
         startDiv.innerHTML = (answers.join(" ")).toUpperCase();
-        userGuess = 15;
+        userGuess = 12;
         letters = [];
         character.innerHTML = "GUESS THE HERO!";
-        characerPic.src = "./assets/images/thumbnail.png";
-        restartGame.id = "restartButton";
-        updateHTML();
+        characterPic.src = "./assets/images/thumbnail.png";
+        startOver.id = "restartButton";
+        // updateHTML();
     }
 
     function superImage() {
-        charcterPic.src = images[selection];
+        characterPic.src = images[selection];
         character.style.fontSize = "6vh";
         character.innerHTML = "AVENGERS ASSEMBLE";
     }
@@ -73,7 +74,7 @@ window.onload = function () {
     }
 
     function youLose() {
-        charcterPic.src = "./assets/images/thanos.jpg";
+        characterPic.src = "./assets/images/thanos.jpg";
         character.style.textAlign = "center";
         character.innerHTML = "DISINTEGRATED!"
     }
@@ -109,8 +110,8 @@ window.onload = function () {
                 wins++;
                 superImage();
                 // Display Button to Restart Game
-                restartGame.id = "restartButtonChange";
-                restartGame.onclick = function (event) {
+                startOver.id = "restartButtonChange";
+                startOver.onclick = function (event) {
                     restartGame();
                 }
                 // if (button on click) {
@@ -121,7 +122,10 @@ window.onload = function () {
             else if (userGuess === 0) {
                 youLose();
                 // Display Button to Restart Game
-
+                startOver.id = "restartButtonChange";
+                startOver.onclick = function (event) {
+                    restartGame();
+                }
                 // if (button on click) {
                 // restartGame()
                 // }
@@ -137,5 +141,12 @@ window.onload = function () {
 
 
     }
-    // }
+
 }
+
+// CURRENTLY :
+
+// COULD NOT GET STARTDIV BUTTON TO INITIATE GAME 
+// RESTART GAME FUNCTION DOES NOT FULLY WORK
+// WINS++ NOT LOGGED UNTIL REMAINING = -1
+//     SUPPOSED TO LOG AT REMAINING = 0
