@@ -7,56 +7,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hang, Man</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
 </head>
 
 <body>
+    <div class="container">
+        <header class="navbar bg-transparent mt-2">
+            <div class="justify-content-start">
+                <a class="navbar-brand " href="./index.html">
+                    <img src="./assets/images/avengerslogo.png" width="400" height="188" alt="Avengers">
+                </a>
+            </div>
+        </header>
+    </div>
+        <section class="container">
+            <div class="jumbotron bg-transparent p-0 text-light">
+                <div class="row">
+                    <div class="col-lg-5 mt-5">
+                        <div id="startDiv">
+                            <button type="button" class="btn btn-danger btn-lg">Press a Letter to Begin</button>
+                        </div>
+                        <p class="lead">
+                            <h4>Wins:
+                                <span id="wins"></span>
+                            </h4>
+                            <h4>Numbers of Guesses Remaining:
+                                <span id="userGuess"></span>
+                            </h4>
+                            <h4>Letters Already Guessed: </h4>
+                            <h5 id="letters"></h5>
 
-    <header class="navbar bg-transparent mt-2">
-        <div class="container justify-content-start">
-            <a class="navbar-brand " href="./index.html">
-                <img src="./assets/images/avengerslogo.png" width="400" height="188" alt="Avengers">
-            </a>
-        </div>
-    </header>
+                            <button id="restartButton" type="button" class="btn btn-danger btn-lg mt-4">Get Back into the
+                                Fight!</button>
 
-    <section class="container">
-        <div class="jumbotron bg-transparent p-0 text-light">
-            <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div id="startDiv">
-                        <button type="button" class="btn btn-danger btn-lg">Press a Letter to Begin</button>
+                        </p>
                     </div>
-                    <p class="lead">
-                        <h4>Wins:
-                            <span id="wins"></span>
-                        </h4>
-                        <h4>Numbers of Guesses Remaining:
-                            <span id="userGuess"></span>
-                        </h4>
-                        <h4>Letters Already Guessed: </h4>
-                        <h5 id="letters"></h5>
+                    <div class="col-lg-5">
+                        <div class="text-center mt-4" style="width: 18rem;">
+                            <img id="headShot" src="./assets/images/thumbnail.png" class="rounded" alt="Avengers">
+                            <div class="card-body">
+                                <h3 id="hero" class="card-text text-center text-light">GUESS THE HERO!</h3>
 
-                        <button id="restartButton" type="button" class="btn btn-danger btn-lg mt-4">Get Back into the Fight!</button>
-                    </p>
-                </div>
-                <div class="col-lg-5">
-                    <div class="text-center mt-4" style="width: 18rem;">
-                        <img id="headShot" src="./assets/images/thumbnail.png" class="rounded" alt="Avengers">
-                        <div class="card-body">
-                            <h3 id="hero" class="card-text text-center text-light">GUESS THE HERO!</h3>
-
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 
 </html>

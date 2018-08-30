@@ -1,89 +1,100 @@
+// WORD CHOICES FOR THE GAME
+var avengers = [
+    "hulk",
+    "thor",
+    "hawkeye",
+    "loki",
+    "antman",
+    "spiderman",
+    "ironman",
+];
 
-window.onload = function () {
+var images = {
+    hulk: "./assets/images/hulk.jpeg",
+    thor: "./assets/images/thor.png",
+    hawkeye: "./assets/images/hawkeye.png",
+    loki: "./assets/images/loki.png",
+    antman: "./assets/images/antman.png",
+    spiderman: "./assets/images/spiderman.png",
+    ironman: "./assets/images/ironman.png",
+};
 
-    // WORD CHOICES FOR THE GAME
-    var avengers = [
-        "hulk",
-        "thor",
-        "hawkeye",
-        "loki",
-        "antman",
-        "spiderman",
-        "ironman",
-    ];
+var wins = 0;
+var userGuess = 12;
+var letters = [];
 
-    var images = {
-        hulk: "./assets/images/hulk.jpeg",
-        thor: "./assets/images/thor.png",
-        hawkeye: "./assets/images/hawkeye.png",
-        loki: "./assets/images/loki.png",
-        antman: "./assets/images/antman.png",
-        spiderman: "./assets/images/spiderman.png",
-        ironman: "./assets/images/ironman.png",
-    };
+// INITIALIZATION   
+var selection = avengers[Math.floor(Math.random() * avengers.length)];
+console.log(selection);
 
-    var wins = 0;
-    var userGuess = 12;
-    var letters = [];
+// DECLARING VARIABLES
+// var winSpan = $('#wins');
+// var userSpan = $('#userGuess');
+// var letterSpan = $('#letters');
+// var startDiv = $('#startDiv');
+// var character = $('#hero');
+// var characterPic = $('headShot');
+// var startOver = $('#restartButton');
+var winSpan = document.getElementById("wins");
+var userSpan = document.getElementById("userGuess");
+var letterSpan = document.getElementById("letters");
+var startDiv = document.getElementById("startDiv");
+var character = document.getElementById("hero");
+var characterPic = document.getElementById("headShot");
+var startOver = document.getElementById("restartButton");
 
-    // INITIALIZATION   
-    var selection = avengers[Math.floor(Math.random() * avengers.length)];
+// ANSWERS ARRAY THAT IS DISPLAYED
+var answers = [];
+for (var i = 0; i < selection.length; i++) {
+    answers[i] = "_";
+}
+
+var remaining = selection.length;
+console.log(remaining);
+
+
+// CREATING FUNCTIONS FOR RESTARTING THE GAME AND UPDATING INFORMATION
+function restartGame() {
+    selection = avengers[Math.floor(Math.random() * avengers.length)];
+    remaining = selection.length
     console.log(selection);
-
-    // DECLARING VARIABLES
-    var winSpan = document.getElementById("wins");
-    var userSpan = document.getElementById("userGuess");
-    var letterSpan = document.getElementById("letters");
-    var startDiv = document.getElementById("startDiv");
-    var character = document.getElementById("hero");
-    var characterPic = document.getElementById("headShot");
-    var startOver = document.getElementById("restartButton");
-
-    // ANSWERS ARRAY THAT IS DISPLAYED
-    var answers = [];
+    answers = [];
     for (var i = 0; i < selection.length; i++) {
         answers[i] = "_";
     }
+    startDiv.innerHTML = (answers.join(" ")).toUpperCase();
+    userGuess = 12;
+    letters = [];
+    character.innerHTML = "GUESS THE HERO!";
+    characterPic.src = "./assets/images/thumbnail.png";
+    startOver.id = "restartButton";
+    gamePlay();
+}
 
-    var remaining = selection.length;
-    console.log(remaining)
+function superImage() {
+    characterPic.src = images[selection];
+    character.style.fontSize = "6vh";
+    character.innerHTML = "AVENGERS ASSEMBLE";
+}
 
+function updateHTML() {
+    winSpan.textContent = wins;
+    userSpan.textContent = userGuess;
+    letterSpan.textContent = letters;
+}
 
-    // CREATING FUNCTIONS FOR RESTARTING THE GAME AND UPDATING INFORMATION
-    function restartGame() {
-        selection = avengers[Math.floor(Math.random() * avengers.length)];
-        startDiv.innerHTML = (answers.join(" ")).toUpperCase();
-        userGuess = 12;
-        letters = [];
-        character.innerHTML = "GUESS THE HERO!";
-        characterPic.src = "./assets/images/thumbnail.png";
-        startOver.id = "restartButton";
-        // updateHTML();
-    }
+function youLose() {
+    characterPic.src = "./assets/images/thanos.jpg";
+    character.style.textAlign = "center";
+    character.innerHTML = "DISINTEGRATED!"
+}
 
-    function superImage() {
-        characterPic.src = images[selection];
-        character.style.fontSize = "6vh";
-        character.innerHTML = "AVENGERS ASSEMBLE";
-    }
+// GAME LOOP    
 
-    function updateHTML() {
-        winSpan.textContent = wins;
-        userSpan.textContent = userGuess;
-        letterSpan.textContent = letters;
-    }
-
-    function youLose() {
-        characterPic.src = "./assets/images/thanos.jpg";
-        character.style.textAlign = "center";
-        character.innerHTML = "DISINTEGRATED!"
-    }
-
-    // GAME LOOP    
-
-    // START GAME FROM BUTTON CLICK (Bug)
-    // startDiv.onclick = function (event) {
-
+// START GAME FROM BUTTON CLICK (Bug)
+// startDiv.onclick = function (event) {
+// startDiv.innerHTML = (answers.join(" ")).toUpperCase();
+function gamePlay() {
     document.onkeyup = function (event) {
         var input = event.key;
         startDiv.innerHTML = (answers.join(" ")).toUpperCase();
@@ -98,7 +109,6 @@ window.onload = function () {
                     if (selection[j] === input) {
                         answers[j] = input;
                         remaining--;
-                        // And stop logging [j] input
                         console.log(remaining);
                     }
                     startDiv.innerHTML = (answers.join(" ")).toUpperCase();
@@ -136,14 +146,11 @@ window.onload = function () {
             }
 
         }
+        else {
+            alert('Please only use Alphabet Keys');
+        }
 
     }
-
 }
 
-// CURRENTLY :
-
-// COULD NOT GET STARTDIV BUTTON TO INITIATE GAME 
-// RESTART GAME FUNCTION DOES NOT FULLY WORK
-// WINS++ NOT LOGGED UNTIL REMAINING = -1
-//     SUPPOSED TO LOG AT REMAINING = 0
+gamePlay();
